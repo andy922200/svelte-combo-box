@@ -5,13 +5,21 @@ import autoprefixer from 'autoprefixer'
 
 export default ({ mode }: ConfigEnv): UserConfig => {
     const env = loadEnv(mode, process.cwd())
-    const currentEnvName = env.VITE_APP_ENV_NAME || 'default'
-    const currentNodeEnv = process.env.VITE_USER_NODE_ENV
+    const currentNodeEnv = env.VITE_USER_NODE_ENV
     const isProdEnv = currentNodeEnv === 'production'
-  
+    
     return {
+        build: {
+            lib: {
+                entry: './src/main.ts',
+                name: 'MySvelteComboBox',
+            }
+        },
         plugins: [
             svelte({
+                compilerOptions: {
+                    customElement: isProdEnv
+                },
                 preprocess: sveltePreprocess({
                     sourceMap: !isProdEnv,
                     postcss: {

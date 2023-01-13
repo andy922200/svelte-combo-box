@@ -33,6 +33,12 @@ module.exports = {
         'import/first': [0],
         'object-property-newline': [2, {
             allowAllPropertiesOnSameLine: true
-        }]
+        }],
+        'svelte/valid-compile': [
+            'error',
+            {
+                'ignoreWarnings': true
+            }
+        ]
     }
 }
